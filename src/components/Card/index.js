@@ -1,12 +1,18 @@
 import cardStyles from "./Card.module.scss";
+import React from "react";
 
-function Index({title, price, img, onClick}){
+function Card({title, price, img, onClickPlus, onClickFavorite}){
+    const[isAdded, setIsAdded] = React.useState(false)
 
-    const onClickButton = ()=>{
-        alert("hello")
+    const onPlusBtn = ()=>{
+        onClickPlus({title, price, img})
+        setIsAdded(prevState => !prevState)
     }
+
+
+
     return(<div className={cardStyles.card}>
-        <div className='favorite'>
+        <div className='favorite' onClick={onClickFavorite}>
             <img src="/img/heart_unliked.svg" alt="heart"/>
         </div>
         <img width={133} height={112} src={img} alt="sneakers"/>
@@ -16,11 +22,13 @@ function Index({title, price, img, onClick}){
                 <span>price</span>
                 <b>{price} rub</b>
             </div>
-            <button className='button' onClick={onClick}>
-                <img width={11} height={11} src="/img/plus_button.svg" alt="plus"/>
-            </button>
+            <img
+                className={cardStyles.plus}
+                src={isAdded?"/img/btn-check.svg":"/img/btn-plus.svg"}
+                alt="plus"
+                onClick={onPlusBtn}/>
         </div>
     </div>)
 }
 
-export default Index
+export default Card
