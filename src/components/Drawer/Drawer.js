@@ -1,14 +1,16 @@
 import React from 'react';
-import "./Drawer.scss"
+import styles from "./Drawer.module.scss"
 import Info from "../Info";
-import AppContext from "../../context";
 import axios from "axios";
+import {useCard} from "../../hooks/useCard";
+
 
 const delay = ()=> new Promise((resolve, reject)=> setTimeout(resolve, 1000))
-const Drawer = ({onRemove, onClose, items=[]}) => {
+const Drawer = ({onRemove, onClose, items=[], opened}) => {
+    const {cartItems, setCartItems, totalPrice} = useCard()
     const [isOrderCompleted,setIsOrderCompleted ] = React.useState(false)
     const [orderId,setOrderId ] = React.useState(null)
-    const {setCartItems, cartItems} = React.useContext(AppContext)
+
     const [isLoading, setIsLoading] = React.useState(false)
     const onClickOrder= async ()=>{
         try{
@@ -31,8 +33,8 @@ const Drawer = ({onRemove, onClose, items=[]}) => {
         setIsLoading(false)
     }
     return (
-        <div className="overlay" style={{}}>
-            <div className="drawer">
+        <div className={`${styles.overlay} ${opened ? styles.overlayVisible:""}`}>
+            <div className={styles.drawer}>
                 <h2 className='mb-30 d-flex justify-between'>
                     Корзина
                     <img
@@ -71,12 +73,12 @@ const Drawer = ({onRemove, onClose, items=[]}) => {
                                 <li className='d-flex'>
                                     <span>Итого</span>
                                     <div></div>
-                                    <b>21 498 rub</b>
+                                    <b>{totalPrice} rub</b>
                                 </li>
                                 <li className='d-flex'>
                                     <span>Налог 5%</span>
                                     <div></div>
-                                    <b>1074 rub</b>
+                                    <b>{Math.floor(totalPrice * 0.05)} rub</b>
                                 </li>
                             </ul>
 

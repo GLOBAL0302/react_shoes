@@ -15,24 +15,25 @@ function Card({
 
     const {isItemAdded} = React.useContext(AppContext)
     const[isFavorite, setIsFavorite] = React.useState(favorited)
+    const obj = {
+        id,
+        parentId: id,
+        title,
+        price,
+        img}
 
-    console.log(title, isItemAdded(id))
     const onPlusBtn = ()=>{
         console.log()
-        onClickPlus({
-            id,
-            title,
-            price,
-            img})
+        onClickPlus(obj)
     }
     const favoriteBtn = ()=>{
-        onClickFavorite({id, title, price, img})
+        onClickFavorite(obj)
         setIsFavorite(prevState => !prevState)
     }
 
     return(
         <div className={cardStyles.card}>
-            {loading ? <ContentLoader
+            {onClickFavorite && loading ? <ContentLoader
                 speed={2}
                 width={150}
                 height={265}
@@ -46,9 +47,10 @@ function Card({
                 <rect x="1" y="234" rx="5" ry="5" width="80" height="25" />
                 <rect x="124" y="230" rx="10" ry="10" width="32" height="32" />
             </ContentLoader>:<>
-                <div className='favorite'>
-                    <img src={isFavorite? "/img/heart_liked.svg" : "/img/heart_unliked.svg"} alt='img' onClick={favoriteBtn}/>
-                </div>
+                {onClickFavorite && <div className='favorite'>
+                    <img src={isFavorite ? "/img/heart_liked.svg" : "/img/heart_unliked.svg"} alt='img'
+                         onClick={favoriteBtn}/>
+                </div>}
                 <img width={133} height={112} src={img} alt="sneakers"/>
                 <h5>{title}</h5>
                 <div className="d-flex justify-between align-center">
@@ -56,11 +58,12 @@ function Card({
                         <span>price</span>
                         <b>{price} rub</b>
                     </div>
-                    <img
+
+                    {onClickPlus && <img
                         className={cardStyles.plus}
-                        src={isItemAdded(id) ? "/img/btn-check.svg":"/img/btn-plus.svg"}
+                        src={isItemAdded(id) ? "/img/btn-check.svg" : "/img/btn-plus.svg"}
                         alt="plus"
-                        onClick={onPlusBtn}/>
+                        onClick={onPlusBtn}/>}
                 </div>
             </>}
 

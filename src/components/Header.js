@@ -1,7 +1,10 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import AppContext from "../context";
+import {useCard} from "../hooks/useCard";
 
 const Header = (props) => {
+  const {totalPrice} = useCard()
     return (
         <header className="d-flex justify-between align-center p-40">
             <div className='d-flex align-center'>
@@ -16,7 +19,7 @@ const Header = (props) => {
             <ul className='headerRight d-flex'>
                 <li className='mr-30 cu-p' onClick={props.onClickCartOpen}>
                     <img width={18} height={18} src="/img/cart.svg" alt="cart" />
-                    <span>1205 руб.</span>
+                    <span>{totalPrice} rub</span>
                 </li>
                 <li className='mr-30 cu-p'>
                     <Link to="/favorites">
@@ -24,7 +27,9 @@ const Header = (props) => {
                     </Link>
                 </li>
                 <li>
-                    <img src="/img/user.svg" alt="user"/>
+                    <Link to="/orders">
+                        <img src="/img/user.svg" alt="user"/>
+                    </Link>
                 </li>
             </ul>
         </header>
