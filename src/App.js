@@ -105,7 +105,7 @@ function App() {
         try {
             axios.delete(`https://65e48bdd3070132b3b24e941.mockapi.io/cart/${id}`)
             setCartItems(prevState => prevState.filter(item => Number(item.id) !== Number(id)))
-        }catch (erorr){
+        }catch (error){
 
         }
     }
@@ -153,7 +153,7 @@ function App() {
            <Header onClickCartOpen={()=>setCartOpened(true)}/>
 
            <Routes>
-               <Route path='' exact element={
+               <Route path='/' exact element={
                    <Home
                        items={items}
                        cartItems={cartItems}
@@ -164,10 +164,10 @@ function App() {
                        onAddToCart={onAddToCart}
                        isLoading={isLoading}/>
                }></Route>
-               <Route path='favorites'  element={<Favorites
+               <Route path='/favorites'  element={<Favorites
                    onAddToFavorites={onAddToFavorites}/>}>
                </Route>
-               <Route path="orders" element={<Orders/>}>
+               <Route path="/orders" element={<Orders/>}>
 
                </Route>
            </Routes>

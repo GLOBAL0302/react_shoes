@@ -32,10 +32,10 @@ const Home = ({items,
                     All shoes
                 </h1>
                 <div className='search-block'>
-                    <img src="img/search_icon.svg" alt="search"/>
+                    <img src="/img/search_icon.svg" alt="search"/>
                     {searchValue &&<img
                         className='clear cu-p'
-                        src="img/btn_remove.svg"
+                        src="/img/btn_remove.svg"
                         alt="clear"
                         onClick={()=> setSearchValue("")}/>}
                     <input onChange={onChangeSearchInput} value={searchValue} placeholder="search" type="text"/>
