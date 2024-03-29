@@ -9,7 +9,7 @@ const Header = (props) => {
         <header className="d-flex justify-between align-center p-40">
             <div className='d-flex align-center'>
                 <Link to="/">
-                    <img width={40} height={40} src="/img/logo_shoes.png" alt=""/>
+                    <img width={40} height={40} src="img/logo_shoes.png" alt=""/>
                     <div className="headerInfo">
                         <h3 className='text-uppercase'>React Snikers</h3>
                         <p>the best shoes store</p>
@@ -23,12 +23,12 @@ const Header = (props) => {
                 </li>
                 <li className='mr-30 cu-p'>
                     <Link to="/favorites">
-                        <img src="/img/favorite_sec.svg" alt="fav"/>
+                        <img src="img/favorite_sec.svg" alt="fav"/>
                     </Link>
                 </li>
                 <li>
                     <Link to="/orders">
-                        <img src="/img/user.svg" alt="user"/>
+                        <img src="img/user.svg" alt="user"/>
                     </Link>
                 </li>
             </ul>

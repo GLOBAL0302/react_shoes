@@ -40,7 +40,7 @@ const Drawer = ({onRemove, onClose, items=[], opened}) => {
                     <img
                         onClick={onClose}
                         className='removeBtn cu-p'
-                        src="/img/btn_remove.svg"
+                        src="img/btn_remove.svg"
                         alt="remove"
                     />
                 </h2>
@@ -60,7 +60,7 @@ const Drawer = ({onRemove, onClose, items=[], opened}) => {
                                         </div>
                                         <img
                                             className='removeBtn'
-                                            src="/img/btn_remove.svg"
+                                            src="img/btn_remove.svg"
                                             alt="remove"
                                             onClick={()=>{onRemove(obj.id)}}
                                         />
@@ -82,12 +82,12 @@ const Drawer = ({onRemove, onClose, items=[], opened}) => {
                                 </li>
                             </ul>
 
-                            <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>Оформить заказ <img src='/img/button_pointer.svg' alt='pointer'/></button>
+                            <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>Оформить заказ <img src='img/button_pointer.svg' alt='pointer'/></button>
                         </div>
                     </div>:<Info
                         title={isOrderCompleted ? "Order Sent": "Empty cart"}
                         description={isOrderCompleted ? `Order Sent with number #${orderId}`:"Please add at least one item, so then you can see it"}
-                        img={isOrderCompleted ?"/img/orderSent.svg" : "/img/empty_cart.svg"}
+                        img={isOrderCompleted ?"img/orderSent.svg" : "img/empty_cart.svg"}
                     />
                 }
             </div>
